@@ -35,7 +35,7 @@ namespace ShopTARgv24.ApplicationServices.Services
                     //muutuja string uploadsFolder ja sinna laetakse failid
                     string uploadsFolder = Path.Combine(_webHost.ContentRootPath, "multipleFileUpload");
                     //muutuja string uniqueFileName ja siin genereeritakse uus Guid ja lisatakse see faili ette
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.Name;
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                     //muutuja string filePath kombineeritakse ja lisatakse koos kausta unikaalse nimega
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 

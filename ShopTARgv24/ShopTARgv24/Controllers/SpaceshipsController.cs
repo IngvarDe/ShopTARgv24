@@ -60,7 +60,15 @@ namespace ShopTARgv24.Controllers
                 Passengers = vm.Passengers,
                 InnerVolume = vm.InnerVolume,
                 CreatedAt = vm.CreatedAt,
-                ModifiedAt = vm.ModifiedAt
+                ModifiedAt = vm.ModifiedAt,
+                Files = vm.Files,
+                FileToApiDtos = vm.Image
+                    .Select(x => new FileToApiDto
+                    {
+                        Id = x.ImageId,
+                        ExistingFilePath = x.FilePath,
+                        SpaceshipId = x.SpaceshipId
+                    }).ToArray()
             };
 
             var result = await _spaceshipsServices.Create(dto);
