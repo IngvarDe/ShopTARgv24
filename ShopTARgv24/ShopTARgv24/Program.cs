@@ -36,6 +36,8 @@ namespace ShopTARgv24
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
