@@ -77,6 +77,7 @@ namespace ShopTARgv24.ApplicationServices.Services
             domain.InnerVolume = dto.InnerVolume;
             domain.CreatedAt = dto.CreatedAt;
             domain.ModifiedAt = DateTime.Now;
+            _fileServices.FilesToApi(dto, domain);
 
             _context.Spaceships.Update(domain);
             await _context.SaveChangesAsync();
