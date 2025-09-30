@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\multipleFileUpload\202f0f27-390a-4387-9884-6f162b2bc1bc_Leonidas.webp" />
-    <None Include="wwwroot\multipleFileUpload\5aab70f3-2190-492c-b4c6-d8178aeaa56f_rocinante.jfif" />
-    <None Include="wwwroot\multipleFileUpload\6dfd6cf7-3d20-4307-9fee-461452ca1d52_Leonidas.webp" />
-    <None Include="wwwroot\multipleFileUpload\701ed21d-9ee3-46be-a3d7-176d87ec6e7e_ScipioAfricanus.jpg" />
-    <None Include="wwwroot\multipleFileUpload\c399e0c7-fc3e-49d8-9c96-8988486e4036_rocinante.jfif" />
-    <None Include="wwwroot\multipleFileUpload\eee70271-f5dd-45bb-ac5b-6b2ea43796da_ScipioAfricanus.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
