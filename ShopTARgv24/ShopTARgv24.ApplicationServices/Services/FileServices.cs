@@ -101,5 +101,32 @@ namespace ShopTARgv24.ApplicationServices.Services
 
             return null;
         }
+
+        public void UploadFilesToDatabase(RealEstateDto dto, RealEstate domain)
+        {
+            //tuleb ära kontrollida, kas on üks fail või mitu
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                //kui tuleb mitu faili, siis igaks juhuks tuleks kasutada foreachi
+                foreach (var file in dto.Files)
+                {
+                    //foreachi sees kasutada using-t ja ära mappida
+                    using (var target = new MemoryStream())
+                    {
+                        FileToDatabase files = new FileToDatabase()
+                        {
+                            Id = Guid.NewGuid(),
+                            ImageTitle = file.FileName,
+                            RealEstateId = domain.Id
+                        };
+                        //salvestada andmed andmebaasi
+                        file.CopyTo(target);
+                        files.ImageData = target.ToArray();
+
+                        _context.FileToDatabase.Add(files);
+                    }
+                }
+            }
+        }
     }
 }

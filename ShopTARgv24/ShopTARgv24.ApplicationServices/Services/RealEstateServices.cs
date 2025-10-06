@@ -10,13 +10,16 @@ namespace ShopTARgv24.ApplicationServices.Services
     public class RealEstateServices : IRealEstateServices
     {
         private readonly ShopTARgv24Context _context;
+        private readonly IFileServices _fileServices;
 
         public RealEstateServices
             (
-                ShopTARgv24Context context
+                ShopTARgv24Context context,
+                IFileServices fileServices
             )
         {
             _context = context;
+            _fileServices = fileServices;
         }
 
         public async Task<RealEstate> Create(RealEstateDto dto)
@@ -30,6 +33,12 @@ namespace ShopTARgv24.ApplicationServices.Services
             domain.BuildingType = dto.BuildingType;
             domain.CreatedAt = DateTime.Now;
             domain.ModifiedAt = DateTime.Now;
+
+            //peaks kontrollima, kas on faile v]i ei ole
+            if (dto.Files != null)
+            {
+                _fileServices.UploadFilesToDatabase(dto, domain);
+            }
 
             await _context.RealEstates.AddAsync(domain);
             await _context.SaveChangesAsync();
