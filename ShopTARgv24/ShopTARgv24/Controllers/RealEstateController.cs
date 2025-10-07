@@ -89,6 +89,7 @@ namespace ShopTARgv24.Controllers
                 return NotFound();
             }
 
+            RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
 
             var vm = new RealEstateCreateUpdateViewModel();
 
@@ -99,6 +100,7 @@ namespace ShopTARgv24.Controllers
             vm.Location = realEstate.Location;
             vm.CreatedAt = realEstate.CreatedAt;
             vm.ModifiedAt = realEstate.ModifiedAt;
+            vm.Image.AddRange(photos);
 
             return View("CreateUpdate", vm);
         }
@@ -137,6 +139,8 @@ namespace ShopTARgv24.Controllers
                 return NotFound();
             }
 
+            RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
+
             var vm = new RealEstateDeleteViewModel();
 
             vm.Id = realEstate.Id;
@@ -146,6 +150,7 @@ namespace ShopTARgv24.Controllers
             vm.Location = realEstate.Location;
             vm.CreatedAt = realEstate.CreatedAt;
             vm.ModifiedAt = realEstate.ModifiedAt;
+            vm.Image.AddRange(photos);
 
             return View(vm);
         }
@@ -174,16 +179,7 @@ namespace ShopTARgv24.Controllers
                 return NotFound();
             }
 
-            var photos = await _context.FileToDatabase
-                .Where(x => x.RealEstateId == id)
-                .Select(y => new RealEstateImageViewModel
-                {
-                    RealEstateId = y.Id,
-                    Id = y.Id,
-                    ImageData = y.ImageData,
-                    ImageTitle = y.ImageTitle,
-                    Image = string.Format("data:image/gif;base64, {0}", Convert.ToBase64String(y.ImageData))
-                }).ToArrayAsync();
+            RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
 
             var vm = new RealEstateDetailsViewModel();
 
@@ -197,6 +193,20 @@ namespace ShopTARgv24.Controllers
             vm.Image.AddRange(photos);
 
             return View(vm);
+        }
+
+        private async Task<RealEstateImageViewModel[]> FilesFromDatabase(Guid id)
+        {
+            return await _context.FileToDatabase
+                .Where(x => x.RealEstateId == id)
+                .Select(y => new RealEstateImageViewModel
+                {
+                    RealEstateId = y.Id,
+                    Id = y.Id,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = string.Format("data:image/gif;base64, {0}", Convert.ToBase64String(y.ImageData))
+                }).ToArrayAsync();
         }
     }
 }
