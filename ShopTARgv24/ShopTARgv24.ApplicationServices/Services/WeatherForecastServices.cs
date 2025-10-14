@@ -10,6 +10,8 @@ namespace ShopTARgv24.ApplicationServices.Services
 
         public async Task<AccuLocationWeatherResultDto> AccuWeatherResult(AccuLocationWeatherResultDto dto)
         {
+
+
             string accuApiKey = "your_api";
             string baseUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/";
 
