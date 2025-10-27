@@ -30,20 +30,21 @@ namespace ShopTARgv24.Controllers
         }
 
         [HttpGet]
-        public IActionResult Joke()
+        public async Task<IActionResult>Joke()
         {
-            ChuckNorrisResultDto dto = new();
+            //ChuckNorrisResultDto dto = new();
 
-            _chuckNorrisServices.ChuckNorrisResult(dto);
+            var joke = await _chuckNorrisServices.ChuckNorrisResultHttpClient();
+            //_chuckNorrisServices.ChuckNorrisResult(joke);
             ChuckNorrisViewModel vm = new();
 
-            vm.Categories = dto.Categories;
-            vm.CreatedAt = dto.CreatedAt;
-            vm.IconUrl = dto.IconUrl;
-            vm.Id = dto.Id;
-            vm.UpdatedAt = dto.UpdatedAt;
-            vm.Url = dto.Url;
-            vm.Value = dto.Value;
+            //vm.Categories = joke.Categories;
+            vm.CreatedAt = joke.CreatedAt;
+            vm.IconUrl = joke.IconUrl;
+            vm.Id = joke.Id;
+            vm.UpdatedAt = joke.UpdatedAt;
+            vm.Url = joke.Url;
+            vm.Value = joke.Value;
 
             return View(vm);
         }
