@@ -1,4 +1,4 @@
-﻿namespace ShopTARgv24.Core.Dto
+﻿namespace ShopTARgv24.Core.Dto.AccuWeatherDto
 {
 public class AccuLocationRootDto
     {

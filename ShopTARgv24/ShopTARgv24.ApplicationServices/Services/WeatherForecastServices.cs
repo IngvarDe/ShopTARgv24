@@ -1,5 +1,5 @@
 ﻿using Nancy.Json;
-using ShopTARgv24.Core.Dto;
+using ShopTARgv24.Core.Dto.AccuWeatherDto;
 using ShopTARgv24.Core.Dto.WeatherWebClientDto;
 using ShopTARgv24.Core.ServiceInterface;
 using System.Net;
