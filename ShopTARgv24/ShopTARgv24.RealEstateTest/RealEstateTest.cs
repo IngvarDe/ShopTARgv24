@@ -143,7 +143,6 @@ namespace ShopTARgv24.RealEstateTest
             Assert.NotEqual(dto.ModifiedAt, result.ModifiedAt);
         }
 
-        //teha test nimega ShouldNot_UpdateRealEstate_WhenDidNotUpdateData()
         [Fact]
         public async Task ShouldNot_UpdateRealEstate_WhenDidNotUpdateData()
         {
