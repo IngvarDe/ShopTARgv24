@@ -155,8 +155,9 @@ namespace ShopTARgv24.RealEstateTest
             Assert.NotEqual(dto.Id, result.Id);
         }
 
-        //mõtelda ise välja unit test
-        //see peab olema selline, mida enne pole teinud
+        //tuleb välja mõelda kolm erinevat xUnit testi RealEstate kohta
+        //saate teha 2-3 in meeskonnas
+        //kommentaari kirjutate, mida iga test kontrollib
 
         private RealEstateDto MockNullRealEstateData()
         {
