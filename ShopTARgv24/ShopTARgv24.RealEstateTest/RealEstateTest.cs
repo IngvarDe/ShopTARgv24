@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.Domain;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
@@ -161,7 +160,8 @@ namespace ShopTARgv24.RealEstateTest
         //tuleb välja mõelda kolm erinevat xUnit testi RealEstate kohta
         //saate teha 2-3 in meeskonnas
         //kommentaari kirjutate, mida iga test kontrollib
-
+        //-------------------------------
+        //Allpool on õpilaste välja mõeldud testid
         [Fact]
         // Uuendame objekti, millel puudub ID – teenus peab tagastama
         // null või muu oodatava tulemuse.
@@ -302,7 +302,6 @@ namespace ShopTARgv24.RealEstateTest
 
         // Test 1: Should_AddRealEstate_WhenAreaIsNegative
         // Test kontrollib, et PRAEGUNE rakendus lubab negatiivse pindala (Area < 0) ilma veata salvestada – see on loogikaviga, mida test näitab.
-        // Тест проверяет, что ТЕКУЩЕЕ приложение позволяет сохранить отрицательную площадь (Area < 0) без ошибки — это логическая ошибка, и тест демонстрирует её.
         //rakenduses on loogika viga,
         //mis lubab negatiivse pindalaga kinnisvara salvestada
         [Fact]
@@ -324,7 +323,6 @@ namespace ShopTARgv24.RealEstateTest
 
         // Test 2: ShouldNot_AddRealEstate_WhenAllFieldsAreNull
         // Test NÄITAB, et praegune rakendus lubab salvestada täiesti tühja DTO (RealEstatedto0), kus kõik väljad on null – see on loogikaviga.
-        // Тест ПОКАЗЫВАЕТ, что текущее приложение позволяет сохранить полностью пустой DTO (RealEstatedto0), где все поля = null — это логическая ошибка.
         [Fact]
         public async Task Should_AddRealEstate_WhenAllFieldsAreNull()
         {
@@ -346,7 +344,6 @@ namespace ShopTARgv24.RealEstateTest
 
         // Test 3: Should_Allow_ModifiedAt_Before_CreatedAt
         // Test kontrollib, et süsteem PRAEGU lubab olukorda, kus ModifiedAt on varasem kui CreateAt (ajaliselt "tagurpidi").
-        // Тест проверяет, что система СЕЙЧАС допускает ситуацию, когда ModifiedAt раньше, чем CreateAt (временная «ошибка» в данных).
         [Fact]
         public async Task Should_Allow_ModifiedAt_Before_CreatedAt1()
         {
@@ -460,13 +457,7 @@ namespace ShopTARgv24.RealEstateTest
 
             // Act
             RealEstate result = null;
-            //try
-            //{
-            //    result = await Svc<IRealEstateServices>().Delete(fakeId);
-            //}
-            //catch
-            //{
-            //    // сервис упадёт → тоже ок, значит delete не работает для несуществующих Id
+
             //}
 
             // Assert
