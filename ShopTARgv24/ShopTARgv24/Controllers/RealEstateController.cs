@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.Dto;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
 using ShopTARgv24.Models.RealEstate;
-using ShopTARgv24.Models.Spaceships;
+
 
 namespace ShopTARgv24.Controllers
 {
@@ -86,7 +85,7 @@ namespace ShopTARgv24.Controllers
 
             if (realEstate == null)
             {
-                return NotFound();
+                return View("NotFound", id);
             }
 
             RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
@@ -136,7 +135,7 @@ namespace ShopTARgv24.Controllers
 
             if (realEstate == null)
             {
-                return NotFound();
+                return View("NotFound", id);
             }
 
             RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
@@ -176,7 +175,7 @@ namespace ShopTARgv24.Controllers
 
             if (realEstate == null)
             {
-                return NotFound();
+                return View("NotFound", id);
             }
 
             RealEstateImageViewModel[] photos = await FilesFromDatabase(id);
