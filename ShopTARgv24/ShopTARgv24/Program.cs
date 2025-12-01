@@ -19,6 +19,8 @@ namespace ShopTARgv24
             builder.Services.AddScoped<IRealEstateServices, RealEstateServices>();
             builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
             builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
+            builder.Services.AddScoped<ICocktailServices, CocktailServices>();
+            builder.Services.AddScoped<IEmailServices, EmailServices>();
 
             builder.Services.AddHttpClient<IChuckNorrisServices, ChuckNorrisServices>();
             builder.Services.AddHttpClient<ICocktailServices, CocktailServices>();
