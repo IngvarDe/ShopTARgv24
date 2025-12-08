@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ShopTARgv24.ApplicationServices.Services;
+using ShopTARgv24.Core.Domain;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
 using ShopTARgv24.Hubs;
@@ -30,6 +33,16 @@ namespace ShopTARgv24
             builder.Services.AddDbContext<ShopTARgv24Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 6;
+                })
+                .AddEntityFrameworkStores<ShopTARgv24Context>()
+                .AddDefaultTokenProviders()
+                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation");
+                //.AddDefaultUI();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,6 +57,7 @@ namespace ShopTARgv24
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 
