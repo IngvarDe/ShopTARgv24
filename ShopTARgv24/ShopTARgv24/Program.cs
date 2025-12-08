@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.ServiceInterface;
 using ShopTARgv24.Data;
+using ShopTARgv24.Hubs;
 
 namespace ShopTARgv24
 {
@@ -13,6 +14,7 @@ namespace ShopTARgv24
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSignalR();
 
             builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
@@ -50,6 +52,7 @@ namespace ShopTARgv24
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
+            app.MapHub<ChatHub>("/chatHub");
 
             app.Run();
         }
