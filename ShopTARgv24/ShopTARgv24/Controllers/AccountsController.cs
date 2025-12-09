@@ -137,9 +137,8 @@ namespace ShopTARgv24.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string? returnUrl)
+        public IActionResult Login()
         {
-
             return View();
         }
     }
