@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.Domain;
 using ShopTARgv24.Core.ServiceInterface;
@@ -44,6 +45,8 @@ namespace ShopTARgv24
 
 
             var app = builder.Build();
+
+            app.MapControllers().RequireAuthorization();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

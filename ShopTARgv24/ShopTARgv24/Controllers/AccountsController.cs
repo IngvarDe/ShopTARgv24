@@ -28,6 +28,7 @@ namespace ShopTARgv24.Controllers
             _emailServices = emailServices;
         }
 
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
