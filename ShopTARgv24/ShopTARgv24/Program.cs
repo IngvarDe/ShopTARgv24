@@ -36,7 +36,12 @@ namespace ShopTARgv24
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
+                    options.SignIn.RequireConfirmedAccount = true;
                     options.Password.RequiredLength = 6;
+
+                    options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+                    options.Lockout.MaxFailedAccessAttempts = 3;
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
                 })
                 .AddEntityFrameworkStores<ShopTARgv24Context>()
                 .AddDefaultTokenProviders()

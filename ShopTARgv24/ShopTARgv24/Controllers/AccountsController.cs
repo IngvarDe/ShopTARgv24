@@ -185,6 +185,7 @@ namespace ShopTARgv24.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -192,12 +193,14 @@ namespace ShopTARgv24.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -226,6 +229,13 @@ namespace ShopTARgv24.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccountLocked()
+        {
+            return View();
         }
     }
 }
