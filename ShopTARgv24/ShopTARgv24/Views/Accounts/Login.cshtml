@@ -39,4 +39,17 @@
             </div>
         </form>
     </div>
+
+    <div class="col-md-6">
+        <h1>External Login</h1>
+        <hr />
+
+        <form asp-controller="Accounts" asp-action="ExternalLogin" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]" method="post">
+            <div>
+                <button type="submit" class="btn btn-primary" name="provider" value="Google">
+                    Log in with Google
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

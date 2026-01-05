@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ShopTARgv24.ApplicationServices.Services;
 using ShopTARgv24.Core.Domain;
@@ -46,8 +44,17 @@ namespace ShopTARgv24
                 .AddEntityFrameworkStores<ShopTARgv24Context>()
                 .AddDefaultTokenProviders()
                 .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation");
-                //.AddDefaultUI();
+            //.AddDefaultUI();
 
+            builder.Services.AddAuthentication()
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"]
+                        ?? throw new InvalidOperationException("Google ClientId not found.");
+
+                    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]
+                        ?? throw new InvalidOperationException("Google ClientSecret not found.");
+                });
 
             var app = builder.Build();
 
