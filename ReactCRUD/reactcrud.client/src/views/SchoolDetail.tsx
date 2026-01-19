@@ -45,52 +45,6 @@ export default function SchoolDetai(): JSX.Element {
             .finally(() => setLoading(false));
     }, [id]);
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        if (!school) return;
-        const { name, value } = e.target;
-        setSchool({ ...school, [name]: value });
-    }
-
-    function handleSubmit(e: FormEvent) {
-        e.preventDefault();
-        if (!school) return;
-        setSaving(true);
-        setError(null);
-
-        fetch(`/api/schools/${encodeURIComponent(school.id)}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(school),
-        })
-            .then((res) => {
-                if (!res.ok) throw new Error(`Save failed (${res.status})`);
-                return res.json();
-            })
-            .then((data) => {
-                setSchool(data);
-            })
-            .catch((err: Error) => setError(err.message || "Save failed"))
-            .finally(() => setSaving(false));
-    }
-
-    function handleDelete() {
-        if (!school || !confirm("Delete this school?")) return;
-        setSaving(true);
-        setError(null);
-
-        fetch(`/api/schools/${encodeURIComponent(school.id)}`, {
-            method: "DELETE",
-        })
-            .then((res) => {
-                if (!res.ok) throw new Error(`Delete failed (${res.status})`);
-                navigate("/schools");
-            })
-            .catch((err: Error) => {
-                setError(err.message || "Delete failed");
-                setSaving(false);
-            });
-    }
-
     if (loading) {
         return <div>Loading...</div>;
     }
