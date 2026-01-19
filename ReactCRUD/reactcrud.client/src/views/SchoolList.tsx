@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { School } from "../types/school";
-
+import { useParams, useNavigate } from "react-router-dom";
 
 function SchoolList() {
-  const [schools, setSchools] = useState<School[]>([]);
+    const [schools, setSchools] = useState<School[]>([]);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    // Fetch school data from API or other source
-    const fetchSchools = async () => {
-      const response = await fetch("/api/school");
-      const data = await response.json();
-      setSchools(data);
-    };
+    useEffect(() => {
+        // Fetch school data from API or other source
+        const fetchSchools = async () => {
+            const response = await fetch("/api/school");
+            const data = await response.json();
+            setSchools(data);
+        };
 
-    fetchSchools();
-  }, []);
+        fetchSchools();
+    }, []);
 
     return (
         <div className="container">
@@ -36,6 +37,11 @@ function SchoolList() {
                                 <td>{school.name}</td>
                                 <td>{school.address}</td>
                                 <td>{school.studentCount}</td>
+                                <td>
+                                    <button type="button" onClick={() => navigate("/schoolList")}>
+                                        Back to list
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     ) : (

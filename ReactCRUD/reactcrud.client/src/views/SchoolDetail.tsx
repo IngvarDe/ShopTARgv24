@@ -127,9 +127,6 @@ export default function SchoolDetai(): JSX.Element {
                 </div>
 
                 <div style={{ display: "flex", gap: 8 }}>
-                    <button type="submit" disabled={saving}>
-                        {saving ? "Saving..." : "Save"}
-                    </button>
                     <button type="button" onClick={() => navigate("/schoolList")} disabled={saving}>
                         Back to list
                     </button>
