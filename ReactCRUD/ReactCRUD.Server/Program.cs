@@ -1,5 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
+using ReactCRUD.ApplicationServices.Services;
+using ReactCRUD.Core.ServiceInterface;
 using ReactCRUD.Data;
 
 namespace ReactCRUD.Server
@@ -18,6 +20,7 @@ namespace ReactCRUD.Server
 
             builder.Services.AddDbContext<ReactCRUDContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<SchoolInterface, SchoolServices>();
 
 
             var app = builder.Build();
