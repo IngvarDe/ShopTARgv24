@@ -37,7 +37,7 @@ namespace ReactCRUD.Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}", Name = "SchoolDetail")]
+        [HttpGet("{id}")]
         public IActionResult Detail(Guid id)
         {
             var school = _schoolService.SchoolDetail(id);

@@ -1,21 +1,29 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { School } from "../types/school";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SchoolList() {
     const [schools, setSchools] = useState<School[]>([]);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Fetch school data from API or other source
-        const fetchSchools = async () => {
+    const fetchSchools = useCallback(async () => {
+        try {
             const response = await fetch("/api/school");
-            const data = await response.json();
-            setSchools(data);
-        };
-
-        fetchSchools();
+            if (response.ok) {
+                const data = await response.json();
+                setSchools(data);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     }, []);
+
+    useEffect(() => {
+
+        (async () => {
+            await fetchSchools();
+        })();
+    }, [fetchSchools]);
 
     return (
         <div className="container">
@@ -38,8 +46,8 @@ function SchoolList() {
                                 <td>{school.address}</td>
                                 <td>{school.studentCount}</td>
                                 <td>
-                                    <button type="button" onClick={() => navigate("/schoolList")}>
-                                        Back to list
+                                    <button type="button" onClick={() => navigate(`/schoolList/${school.id}`)}>
+                                        Details
                                     </button>
                                 </td>
                             </tr>
