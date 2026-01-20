@@ -56,5 +56,16 @@ namespace ReactCRUD.Server.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var school = _schoolService.SchoolDelete(id);
+            if (school == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

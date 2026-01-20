@@ -49,6 +49,9 @@ function SchoolList() {
                                     <button type="button" onClick={() => navigate(`/schoolList/${school.id}`)}>
                                         Details
                                     </button>
+                                    <button type="button" onClick={() => navigate(`/schoolDelete/${school.id}`)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))
